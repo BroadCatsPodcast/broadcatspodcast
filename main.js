@@ -1,13 +1,18 @@
-window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(section => {
-        const distanceFromTop = section.getBoundingClientRect().top;
-        const screenHeight = window.innerHeight;
+document.addEventListener('DOMContentLoaded', function() {
+    const elements = document.querySelectorAll('.fade-in');
 
-        if (distanceFromTop < screenHeight * 0.75) {
-            section.classList.add('blur-effect', 'active');
-        } else {
-            section.classList.remove('blur-effect', 'active');
-        }
-    });
+    function fadeInElements() {
+        elements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (elementTop < windowHeight) {
+                element.classList.add('visible');
+            }
+        });
+    }
+
+    fadeInElements();
+
+    window.addEventListener('scroll', fadeInElements);
 });
